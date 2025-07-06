@@ -164,6 +164,122 @@ body {
     transform: translateY(-2px);
 }
 
+/* Bibliography Styles */
+.bibliography-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 30px 30px;
+    color: black;
+}
+
+.bibliography-container h1 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 12px 24px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.tab-button:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background: #0066ff;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.article-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.article-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.article-card .author {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.article-card .year {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.article-card .description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.external-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #0066ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+.external-link:hover {
+    background: #0052cc;
+    transform: translateY(-2px);
+}
+
 /* Fade-in animations */
 .corner-text {
     animation: fadeInUp 0.8s ease-out;
@@ -184,6 +300,18 @@ body {
 /* Disable animations on data collection page */
 body[data-page="data-collection"] .corner-text,
 body[data-page="data-collection"] .hamburger-menu {
+    animation: none;
+}
+
+/* Disable animations on bibliography page */
+body[data-page="bibliography"] .corner-text,
+body[data-page="bibliography"] .hamburger-menu {
+    animation: none;
+}
+
+/* Disable animations on about precedent study page */
+body[data-page="about-precedent-study"] .corner-text,
+body[data-page="about-precedent-study"] .hamburger-menu {
     animation: none;
 }
 

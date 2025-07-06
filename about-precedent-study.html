@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Methos As Practices</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="about-precedent-study">
+    <div class="corner-text left">2025 Summer GSAPP CDP</div>
+    <div class="corner-text right">Methos As Practices</div>
+    
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="circle-icon"></div>
+    </div>
+    
+    <div class="circle-menu" id="circleMenu">
+        <div class="circle-content">
+            <span onclick="window.location.href='about-precedent-study.html'">About</span>
+            <span onclick="window.location.href='data-collection.html'">Data Collection</span>
+            <span>Layers of Analysis</span>
+            <span onclick="window.location.href='final-diagram.html'">Final Diagram</span>
+        </div>
+    </div>
+    
+    <div class="page-content">
+        <h1>About</h1>
+        <p>This page provides an overview of the precedent study methodology and its role in architectural research.</p>
+    </div>
+    
+    <div class="back-button-center" onclick="window.location.href='index.html'">Back to Main</div>
+    
+    <script>
+        // Menu toggle function
+        function toggleMenu() {
+            const circleMenu = document.getElementById('circleMenu');
+            circleMenu.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const circleMenu = document.getElementById('circleMenu');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            
+            if (!circleMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+                circleMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 

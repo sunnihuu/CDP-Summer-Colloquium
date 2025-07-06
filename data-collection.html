@@ -16,9 +16,10 @@
     
     <div class="circle-menu" id="circleMenu">
         <div class="circle-content">
+            <span onclick="window.location.href='about-precedent-study.html'">About</span>
             <span onclick="window.location.href='data-collection.html'">Data Collection</span>
             <span>Layers of Analysis</span>
-            <span>Final Precedent Study</span>
+            <span onclick="window.location.href='final-diagram.html'">Final Diagram</span>
         </div>
     </div>
     
@@ -27,9 +28,110 @@
         <p>This page contains information about data collection methods and processes.</p>
     </div>
     
+    <div class="bibliography-container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('by-author')">By Author</button>
+            <button class="tab-button" onclick="openTab('by-others')">By Others</button>
+            <button class="tab-button" onclick="openTab('tools')">Tools Author Used</button>
+            <button class="tab-button" onclick="openTab('concepts')">Concepts</button>
+        </div>
+        
+        <div id="by-author" class="tab-content active">
+            <div class="article-card">
+                <h3>Methodology as Practice: A New Approach</h3>
+                <p class="author">Sunni Hu</p>
+                <p class="year">2024</p>
+                <p class="description">Introduction to the methodological framework and its practical applications in architectural research.</p>
+                <a href="#" class="external-link" target="_blank">View Article →</a>
+            </div>
+            
+            <div class="article-card">
+                <h3>Data Collection Methods in Urban Studies</h3>
+                <p class="author">Sunni Hu</p>
+                <p class="year">2023</p>
+                <p class="description">Comprehensive analysis of data collection techniques and their implementation in urban research projects.</p>
+                <a href="#" class="external-link" target="_blank">View Article →</a>
+            </div>
+        </div>
+        
+        <div id="by-others" class="tab-content">
+            <div class="article-card">
+                <h3>Review of Hu's Methodological Framework</h3>
+                <p class="author">Dr. Jane Smith</p>
+                <p class="year">2024</p>
+                <p class="description">Critical analysis and review of the methodological approach proposed by Sunni Hu.</p>
+                <a href="#" class="external-link" target="_blank">View Article →</a>
+            </div>
+            
+            <div class="article-card">
+                <h3>Applications of Practice-Based Research</h3>
+                <p class="author">Prof. Michael Chen</p>
+                <p class="year">2023</p>
+                <p class="description">Exploration of how practice-based methodologies are transforming architectural research.</p>
+                <a href="#" class="external-link" target="_blank">View Article →</a>
+            </div>
+        </div>
+        
+        <div id="tools" class="tab-content">
+            <div class="article-card">
+                <h3>GIS Mapping Software</h3>
+                <p class="author">Tool</p>
+                <p class="year">2024</p>
+                <p class="description">Geographic Information System tools used for spatial analysis and data visualization.</p>
+                <a href="#" class="external-link" target="_blank">Learn More →</a>
+            </div>
+            
+            <div class="article-card">
+                <h3>Statistical Analysis Methods</h3>
+                <p class="author">Methodology</p>
+                <p class="year">2023</p>
+                <p class="description">Quantitative analysis techniques employed in urban research and data interpretation.</p>
+                <a href="#" class="external-link" target="_blank">Learn More →</a>
+            </div>
+        </div>
+        
+        <div id="concepts" class="tab-content">
+            <div class="article-card">
+                <h3>Practice-Based Research</h3>
+                <p class="author">Concept</p>
+                <p class="year">2024</p>
+                <p class="description">Theoretical framework for conducting research through practical application and iterative processes.</p>
+                <a href="#" class="external-link" target="_blank">Learn More →</a>
+            </div>
+            
+            <div class="article-card">
+                <h3>Urban Morphology</h3>
+                <p class="author">Concept</p>
+                <p class="year">2023</p>
+                <p class="description">Study of the physical form and structure of urban areas and their evolution over time.</p>
+                <a href="#" class="external-link" target="_blank">Learn More →</a>
+            </div>
+        </div>
+    </div>
+    
     <div class="back-button-center" onclick="window.location.href='index.html'">Back to Main</div>
     
     <script>
+        function openTab(tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to the clicked button
+            event.target.classList.add('active');
+        }
+        
         // Menu toggle function
         function toggleMenu() {
             const circleMenu = document.getElementById('circleMenu');
