@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --dark-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin: 30px;
+}
+
+.corner-text {
+    position: fixed;
+    top: 30px;
+    color: black;
+    font-size: 14px;
+    font-weight: 300;
+    z-index: 1000;
+}
+
+.corner-text.left {
+    left: 30px;
+}
+
+.corner-text.right {
+    right: 30px;
+}
+
+.hamburger-menu {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.circle-icon {
+    width: 40px;
+    height: 40px;
+    background: #0066ff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover .circle-icon {
+    transform: scale(1.1);
+}
+
+.circle-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 300px;
+    height: 300px;
+    background: #0066ff;
+    border-radius: 50%;
+    z-index: 999;
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-menu.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.circle-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.circle-content span {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.circle-content span:hover {
+    font-size: 20px;
+    transform: scale(1.1);
+}
+
+#threejs-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.page-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding-top: 100px;
+    color: black;
+}
+
+.page-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.page-content p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #0066ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #0052cc;
+    transform: translateY(-2px);
+}
+
+.back-button-center {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 8px 16px;
+    background: #0066ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 300;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.back-button-center:hover {
+    background: #0052cc;
+    transform: translateY(-2px);
+}
+
+/* Fade-in animations */
+.corner-text {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.corner-text.left {
+    animation-delay: 0.2s;
+}
+
+.corner-text.right {
+    animation-delay: 0.4s;
+}
+
+.hamburger-menu {
+    animation: fadeInDown 0.8s ease-out 0.4s both;
+}
+
+/* Disable animations on data collection page */
+body[data-page="data-collection"] .corner-text,
+body[data-page="data-collection"] .hamburger-menu {
+    animation: none;
+}
+
+.citation {
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.back-button-center {
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.page-content {
+    animation: fadeIn 1s ease-out 1s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.citation {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    color: black;
+    font-size: 14px;
+    font-weight: 300;
+    z-index: 10;
+} 
