@@ -6,10 +6,13 @@
     <title>Methos As Practices</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 </head>
 <body>
-    <div class="corner-text left">2025 Summer GSAPP CDP</div>
-    <div class="corner-text right">Methos As Practices</div>
+    <div class="corner-text left" id="cornerLeft">2025 Summer GSAPP CDP</div>
+    <div class="corner-text right" id="cornerRight">Methos As Practices</div>
+    
+    <div class="floating-text" id="floatingText"></div>
     
     <div class="hamburger-menu" onclick="toggleMenu()">
         <div class="circle-icon"></div>
@@ -24,87 +27,10 @@
         </div>
     </div>
     
+
+    
     <canvas id="threejs-canvas"></canvas>
     
-    <script>
-        // Three.js Scene Setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ 
-            canvas: document.getElementById('threejs-canvas'),
-            alpha: true 
-        });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x000000, 0);
-        
-        // Create a geometric shape (octahedron)
-        const geometry = new THREE.OctahedronGeometry(2, 0);
-        const material = new THREE.MeshBasicMaterial({ 
-            color: 0x0066ff,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.8
-        });
-        const shape = new THREE.Mesh(geometry, material);
-        scene.add(shape);
-        
-        // Position camera
-        camera.position.z = 5;
-        
-        // Mouse interaction variables
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetRotationX = 0;
-        let targetRotationY = 0;
-        
-        // Mouse move event
-        document.addEventListener('mousemove', function(event) {
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-            
-            targetRotationX = mouseY * 0.5;
-            targetRotationY = mouseX * 0.5;
-        });
-        
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            // Smooth rotation towards target
-            shape.rotation.x += (targetRotationX - shape.rotation.x) * 0.05;
-            shape.rotation.y += (targetRotationY - shape.rotation.y) * 0.05;
-            
-            renderer.render(scene, camera);
-        }
-        
-        // Handle window resize
-        window.addEventListener('resize', onWindowResize, false);
-        
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-        
-        // Start animation
-        animate();
-        
-        // Menu toggle function
-        function toggleMenu() {
-            const circleMenu = document.getElementById('circleMenu');
-            circleMenu.classList.toggle('active');
-        }
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const circleMenu = document.getElementById('circleMenu');
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            
-            if (!circleMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-                circleMenu.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html> 
