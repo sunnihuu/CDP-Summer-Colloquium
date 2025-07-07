@@ -66,8 +66,8 @@ function animate() {
     
     // Auto-rotate when not being controlled
     if (autoRotate) {
-        sphere.rotation.x += 0.003;
-        sphere.rotation.y += 0.003;
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
         sphereRotationX = sphere.rotation.x;
         sphereRotationY = sphere.rotation.y;
     }

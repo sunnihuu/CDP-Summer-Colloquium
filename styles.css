@@ -48,10 +48,12 @@ body {
     background: #0066ff;
     border-radius: 50%;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
 }
 
 .hamburger-menu:hover .circle-icon {
     transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
 }
 
 .circle-menu {
@@ -136,16 +138,18 @@ body {
     font-weight: 300;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
 }
 
 .back-button:hover {
     background: #0052cc;
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
 }
 
 .back-button-center {
     position: fixed;
-    bottom: 30px;
+    top: 60px;
     left: 30px;
     padding: 8px 16px;
     background: #0066ff;
@@ -157,11 +161,39 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
 }
 
 .back-button-center:hover {
     background: #0052cc;
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 12px 20px;
+    background: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-to-top:hover {
+    background: #0052cc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
 }
 
 /* Bibliography Styles */
@@ -199,16 +231,19 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tab-button:hover {
     background: #e0e0e0;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .tab-button.active {
     background: #0066ff;
     color: white;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
 }
 
 .tab-content {
@@ -251,6 +286,20 @@ body {
 .article-card .year {
     font-size: 14px;
     color: #999;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.article-card .format {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.article-card .audience {
+    font-size: 14px;
+    color: #999;
     margin-bottom: 15px;
     font-weight: 300;
 }
@@ -273,11 +322,13 @@ body {
     font-size: 14px;
     font-weight: 300;
     transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 102, 255, 0.3);
 }
 
 .external-link:hover {
     background: #0052cc;
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
 }
 
 /* Fade-in animations */
@@ -316,10 +367,6 @@ body[data-page="about-precedent-study"] .hamburger-menu {
 }
 
 .citation {
-    animation: fadeInUp 0.8s ease-out 0.8s both;
-}
-
-.back-button-center {
     animation: fadeInUp 0.8s ease-out 0.8s both;
 }
 
