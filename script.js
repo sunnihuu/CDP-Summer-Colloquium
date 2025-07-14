@@ -682,8 +682,147 @@ document.addEventListener('DOMContentLoaded', function() {
     initD3JS();
 });
 
+// --- D3 Sankey Diagram for Historical Context & Intent Tab ---
+let sankeyRendered = false;
+function renderSankeyDiagram() {
+    if (sankeyRendered) return;
+    sankeyRendered = true;
+    const container = document.getElementById('d3-canvas-historical');
+    if (!container) return;
+    container.innerHTML = '';
+    const width = container.clientWidth || 900;
+    const height = container.clientHeight || 500;
+    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+
+    // --- Sankey Data ---
+    const nodes = [
+      { name: "Economic Complexity Theory" },
+      { name: "Complex Systems Thinking" },
+      { name: "D3.js" },
+      { name: "Open Source Visualization" },
+      { name: "Open Data Movement" },
+      { name: "Post-2008 Globalization Rethink" },
+      { name: "Harvard CID" },
+      { name: "Ricardo Hausmann" },
+      { name: "César Hidalgo" },
+      { name: "OEC Platform" },
+      { name: "Tree Maps" },
+      { name: "Network Diagrams" },
+      { name: "ECI" },
+      { name: "PCI" }
+    ];
+    const links = [
+      { source: 0, target: 9, value: 2 },
+      { source: 1, target: 0, value: 1 },
+      { source: 2, target: 9, value: 2 },
+      { source: 3, target: 2, value: 1 },
+      { source: 4, target: 9, value: 2 },
+      { source: 5, target: 4, value: 1 },
+      { source: 6, target: 9, value: 2 },
+      { source: 7, target: 0, value: 1 },
+      { source: 8, target: 0, value: 1 },
+      { source: 9, target: 10, value: 1 },
+      { source: 9, target: 11, value: 1 },
+      { source: 9, target: 12, value: 1 },
+      { source: 9, target: 13, value: 1 }
+    ];
+
+    // --- Sankey Setup ---
+    const sankey = d3.sankey()
+      .nodeWidth(20)
+      .nodePadding(10)
+      .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]]);
+
+    const sankeyData = {
+      nodes: nodes.map(d => Object.assign({}, d)),
+      links: links.map(d => Object.assign({}, d))
+    };
+
+    const {nodes: sankeyNodes, links: sankeyLinks} = sankey(sankeyData);
+
+    // --- SVG ---
+    const svg = d3.select(container)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    // --- Links ---
+    svg.append('g')
+      .attr('fill', 'none')
+      .selectAll('path')
+      .data(sankeyLinks)
+      .join('path')
+      .attr('d', d3.sankeyLinkHorizontal())
+      .attr('stroke', '#aaa')
+      .attr('stroke-width', d => Math.max(1, d.width))
+      .attr('opacity', 0.5);
+
+    // --- Nodes ---
+    const node = svg.append('g')
+      .selectAll('g')
+      .data(sankeyNodes)
+      .join('g');
+
+    node.append('rect')
+      .attr('x', d => d.x0)
+      .attr('y', d => d.y0)
+      .attr('height', d => d.y1 - d.y0)
+      .attr('width', d => d.x1 - d.x0)
+      .attr('fill', '#888')
+      .attr('stroke', '#222')
+      .on('mouseover', function(event, d) {
+        d3.select(this).attr('stroke', '#000').attr('stroke-width', 2);
+        tooltip.style('display', 'block')
+          .html(`<strong>${d.name}</strong>`);
+      })
+      .on('mousemove', function(event) {
+        tooltip.style('left', (event.pageX + 15) + 'px')
+          .style('top', (event.pageY - 20) + 'px');
+      })
+      .on('mouseout', function(event, d) {
+        d3.select(this)
+          .attr('stroke', '#222')
+          .attr('stroke-width', 1);
+        tooltip.style('display', 'none');
+      });
+
+    node.append('text')
+      .attr('x', d => d.x0 + (d.x1 - d.x0) / 2)
+      .attr('y', d => (d.y1 + d.y0) / 2)
+      .attr('dy', '0.35em')
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '13px')
+      .attr('fill', '#fff')
+      .attr('pointer-events', 'none')
+      .text(d => d.name);
+
+    // --- Tooltip ---
+    const tooltip = d3.select('body').append('div')
+      .attr('class', 'sankey-tooltip')
+      .style('position', 'absolute')
+      .style('background', 'rgba(30,30,30,0.95)')
+      .style('color', '#fff')
+      .style('padding', '8px 14px')
+      .style('border-radius', '8px')
+      .style('font-size', '13px')
+      .style('pointer-events', 'none')
+      .style('z-index', '10000')
+      .style('display', 'none');
+
+    // --- Caption ---
+    d3.select(container)
+      .append('div')
+      .attr('class', 'sankey-caption')
+      .style('margin', '18px auto 0 auto')
+      .style('max-width', '700px')
+      .style('font-size', '1.05rem')
+      .style('color', '#444')
+      .style('text-align', 'center')
+      .text('This Sankey diagram visualizes the historical and contextual influences that led to the creation of the Observatory of Economic Complexity (OEC).');
+}
+
 // Tab switching function
-function openTab(tabName) {
+function openTab(tabName, event) {
     // Hide all tab contents
     const tabContents = document.getElementsByClassName('tab-content');
     for (let i = 0; i < tabContents.length; i++) {
@@ -700,7 +839,9 @@ function openTab(tabName) {
     document.getElementById(tabName).classList.add('active');
     
     // Add active class to the clicked button
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
     
     // Reinitialize D3.js if switching to the structural-conceptual tab
     if (tabName === 'structural-conceptual') {
@@ -709,6 +850,15 @@ function openTab(tabName) {
         }, 100);
     }
 }
+
+// Patch openTab to render Sankey when historical-context is opened
+const originalOpenTab = window.openTab;
+window.openTab = function(tabName, event) {
+    if (originalOpenTab) originalOpenTab(tabName, event);
+    if (tabName === 'historical-context') {
+        renderSankeyDiagram();
+    }
+};
 
 // Menu toggle function
 function toggleMenu() {

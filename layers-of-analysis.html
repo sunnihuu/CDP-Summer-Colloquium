@@ -18,18 +18,19 @@
     
     <div class="bibliography-container" style="margin-top: 140px; max-width: 950px; margin-left: auto; margin-right: auto;">
         <div class="tabs" style="margin-top: -40px;">
-            <button class="tab-button active" onclick="openTab('structural-conceptual')">Ontological Analysis</button>
-            <button class="tab-button" onclick="openTab('historical-context')">Historical Context & Intent</button>
-            <button class="tab-button" onclick="openTab('visual-language')">Visual Language & Style</button>
+            <button class="tab-button active" onclick="openTab('structural-conceptual', event)">Ontological Analysis</button>
+            <button class="tab-button" onclick="openTab('historical-context', event)">Historical Context & Intent</button>
+            <button class="tab-button" onclick="openTab('visual-language', event)">Visual Language & Style</button>
         </div>
         
         <div id="structural-conceptual" class="tab-content active">
             <div id="d3-canvas" style="width: 100%; height: 600px; border-radius: 15px; margin-top: 20px; background: #f8f9fa; border: 1px solid #e0e0e0; position: relative; overflow: hidden;">
             </div>
-
         </div>
         
         <div id="historical-context" class="tab-content">
+            <div id="d3-canvas-historical" style="width: 100%; height: 600px; border-radius: 15px; margin-top: 20px; background: #f8f9fa; border: 1px solid #e0e0e0; position: relative; overflow: hidden;">
+            </div>
         </div>
         
         <div id="visual-language" class="tab-content">
@@ -68,7 +69,7 @@
     </div>
     
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html> 
 </html> 

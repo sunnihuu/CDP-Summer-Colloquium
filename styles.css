@@ -758,3 +758,14 @@ body[data-page="layers-of-analysis"] .nav-btn[onclick*="layers-of-analysis.html"
 .popup-close {
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 } 
+
+#d3-canvas-historical {
+    width: 100%;
+    height: 600px;
+    border-radius: 15px;
+    margin-top: 20px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    overflow: hidden;
+} 
