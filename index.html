@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Methos As Practices</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 </head>
 <body>
-    <a href="index.html" class="headline-link" style="text-decoration:none;"><h1 class="corner-text left headline" id="cornerLeft"><span class="headline-bold">Precendent Study:</span><br><span class="headline-normal">The Observatory of Economic Complexity (OEC)</span></h1></a>
-    <nav class="top-nav">
-        <button class="nav-btn" onclick="window.location.href='about-precedent-study.html'">About</button>
-        <button class="nav-btn" onclick="window.location.href='data-collection.html'">Data Collection</button>
-        <button class="nav-btn" onclick="window.location.href='#'">Layers of Analysis</button>
-        <button class="nav-btn" onclick="window.location.href='final-diagram.html'">Final Diagram</button>
-    </nav>
-    
-    <div class="floating-text" id="floatingText"></div>
-    
-    <canvas id="threejs-canvas"></canvas>
+    <div class="top-bar">
+        <a href="index.html" class="headline-link" style="text-decoration:none;"><h1 class="headline" id="cornerLeft"><span class="headline-bold">Precendent Study:</span><br><span class="headline-normal">The Observatory of Economic Complexity (OEC)</span></h1></a>
+        <nav class="top-nav">
+            <button class="nav-btn" onclick="window.location.href='data-collection.html'">Data Collection</button>
+            <button class="nav-btn" onclick="window.location.href='#'">Layers of Analysis</button>
+            <button class="nav-btn" onclick="window.location.href='final-diagram.html'">Final Diagram</button>
+        </nav>
+    </div>
+
+    <div class="article-card" style="margin-top: 140px; max-width: 950px; margin-left: auto; margin-right: auto;">
+        <img src="images/oew-word.jpg" alt="OEC Word Logo" class="about-image" style="max-width:800px;width:100%;height:auto;margin-bottom:30px;display:block;margin-left:auto;margin-right:auto;" />
+        <h3>The Observatory of Economic Complexity (OEC)</h3>
+        <p class="author">Author: Datawheel (developed by Alexander Simões & César A. Hidalgo)</p>
+        <p class="year">Year: 2011–present (latest version: OEC 5.0, 2021)</p>
+        <p class="format">Format: Interactive online data platform</p>
+        <p class="audience">Audience: Economists, policymakers, researchers, educators, business analysts, and the data-literate public</p>
+        <p class="description">The Observatory of Economic Complexity (OEC) is a comprehensive data visualization platform that offers detailed global trade data covering over 500 subnational regions, 5,000 products, and thousands of firms. It enables users to explore trade patterns, compare economic performance, and generate reports quickly using clear visualizations. The platform features interactive profiles for countries, products, regions, and companies; forecasting tools including tariff simulators and growth predictions; custom visualization builders with time series, network, stacked, scatter, and map options; bulk data downloads; and economic complexity rankings. The OEC is designed to help analysts save time by providing fast access to relevant data and streamlined tools for analysis, making complex trade relationships and economic patterns accessible through intuitive visual interfaces.</p>
+        <a href="https://oec.world/en" class="external-link" target="_blank">Visit OEC Platform →</a>
+    </div>
     
     <script src="script.js"></script>
 </body>

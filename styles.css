@@ -21,7 +21,7 @@ body {
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 300;
     margin: 30px;
-    background: var(--off-white);
+    background: #FFF8E1;
     color: var(--primary-dark);
 }
 
@@ -150,32 +150,41 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 10;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 120px;
+    padding-bottom: 60px;
     color: var(--primary-dark);
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
     background: var(--off-white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(176, 176, 176, 0.1);
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .page-content h1 {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: var(--soft-black);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
 }
 
 .page-content p {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     text-align: left;
-    line-height: 1.6;
-    max-width: 600px;
+    line-height: 1.7;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     color: var(--primary-dark);
+    letter-spacing: 0.01em;
 }
 
 .back-button {
@@ -192,9 +201,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-button:hover {
-    background: var(--deep-teal);
+    background: #FF8C00;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 109, 119, 0.4);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
 }
 
 .back-button-center {
@@ -216,9 +225,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .back-button-center:hover {
-    background: var(--deep-teal);
+    background: #FF8C00;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 109, 119, 0.4);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
 }
 
 .scroll-to-top {
@@ -226,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 30px;
     left: 30px;
     padding: 12px 20px;
-    background: var(--accent-blue);
+    background: #FF8C00;
     color: var(--off-white);
     border: none;
     border-radius: 25px;
@@ -235,34 +244,39 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
     opacity: 0;
     visibility: hidden;
 }
 
 .scroll-to-top:hover {
-    background: var(--deep-teal);
+    background: #FF8C00;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 109, 119, 0.4);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
 }
 
 /* Bibliography Styles */
 .bibliography-container {
     position: relative;
     z-index: 10;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 100px 30px 30px;
+    padding: 80px 40px 60px;
     color: var(--primary-dark);
     background: var(--off-white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(176, 176, 176, 0.1);
+    margin-bottom: 40px;
 }
 
 .bibliography-container h1 {
     text-align: center;
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     color: var(--soft-black);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .tabs {
@@ -287,15 +301,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tab-button:hover {
-    background: var(--neutral-gray);
-    color: var(--soft-black);
-    box-shadow: 0 4px 12px rgba(176, 176, 176, 0.15);
+    background: #FF8C00;
+    color: var(--off-white);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 }
 
 .tab-button.active {
-    background: var(--accent-blue);
+    background: #FF8C00;
     color: var(--off-white);
-    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 }
 
 .tab-content {
@@ -309,62 +323,67 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-card {
     background: var(--off-white);
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(176,176,176,0.1);
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(176,176,176,0.08);
     transition: all 0.3s ease;
     color: var(--primary-dark);
+    border: 1px solid rgba(176, 176, 176, 0.1);
 }
 
 .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(176,176,176,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(176,176,176,0.15);
     border: 1px solid var(--accent-yellow);
 }
 
 .article-card h3 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: var(--soft-black);
+    line-height: 1.2;
 }
 
 .article-card .author,
 .article-card .year,
 .article-card .format,
 .article-card .audience {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--neutral-gray);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: 300;
+    letter-spacing: 0.01em;
 }
 
 .article-card .description {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.7;
     color: var(--primary-dark);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 300;
+    letter-spacing: 0.01em;
 }
 
 .external-link {
     display: inline-block;
-    padding: 8px 16px;
-    background: var(--accent-blue);
+    padding: 12px 24px;
+    background: #FF8C00;
     color: var(--off-white);
     text-decoration: none;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 300;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 400;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(0, 119, 182, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    letter-spacing: 0.01em;
 }
 
 .external-link:hover {
-    background: var(--deep-teal);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 119, 182, 0.4);
+    background: #FF8C00;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
 }
 
 /* Fade-in animations */
@@ -406,8 +425,9 @@ body[data-page="about-precedent-study"] .hamburger-menu {
     animation: fadeInUp 0.8s ease-out 0.8s both;
 }
 
+/* Remove fade-in animations for home page */
 .page-content {
-    animation: fadeIn 1s ease-out 1s both;
+    /* animation: fadeIn 1s ease-out 1s both; */
 }
 
 @keyframes fadeIn {
@@ -451,14 +471,30 @@ body[data-page="about-precedent-study"] .hamburger-menu {
     z-index: 10;
 }
 
-.top-nav {
+.top-bar {
     position: fixed;
     top: 30px;
+    left: 30px;
     right: 30px;
     display: flex;
-    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
     z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(176, 176, 176, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.top-nav {
+    display: flex;
+    gap: 16px;
     background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
 }
 
 .nav-btn {
@@ -476,10 +512,10 @@ body[data-page="about-precedent-study"] .hamburger-menu {
 }
 
 .nav-btn:hover, .nav-btn:focus {
-    background: var(--accent-blue);
+    background: #FF8C00;
     color: var(--off-white);
-    border-color: var(--accent-blue);
-    box-shadow: 0 6px 18px rgba(0, 119, 182, 0.18);
+    border-color: #FF8C00;
+    box-shadow: 0 6px 18px rgba(255, 140, 0, 0.3);
     outline: none;
     transform: scale(1.07);
     z-index: 1;
@@ -492,6 +528,7 @@ body[data-page="about-precedent-study"] .hamburger-menu {
     color: var(--soft-black);
     line-height: 1.2;
     text-transform: none;
+    margin: 0;
 }
 .headline-bold {
     font-weight: 700;
@@ -507,9 +544,7 @@ body[data-page="about-precedent-study"] .hamburger-menu {
 a.headline-link:hover .headline,
 a.headline-link:hover .headline-bold,
 a.headline-link:hover .headline-normal {
-    color: var(--primary-dark);
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    color: #FF8C00;
     cursor: pointer;
     transition: color 0.2s;
 }

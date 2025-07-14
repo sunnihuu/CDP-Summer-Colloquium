@@ -10,10 +10,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 
 // Position camera
-camera.position.z = 5;
+camera.position.z = 7;
 
 // Create wireframe sphere
-const geometry = new THREE.SphereGeometry(2, 16, 16);
+const geometry = new THREE.SphereGeometry(4, 32, 32);
 const material = new THREE.MeshBasicMaterial({ 
     color: 0x0066ff,
     wireframe: true,
