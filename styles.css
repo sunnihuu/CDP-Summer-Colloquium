@@ -556,4 +556,12 @@ a.headline-link:hover .headline-normal {
     .headline-normal {
         font-size: 14px;
     }
+}
+
+/* Active navigation button styling */
+body[data-page="data-collection"] .nav-btn[onclick*="data-collection.html"],
+body[data-page="layers-of-analysis"] .nav-btn[onclick*="layers-of-analysis.html"] {
+    background-color: #FF8C00;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 } 
