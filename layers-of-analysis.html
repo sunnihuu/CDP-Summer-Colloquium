@@ -18,41 +18,16 @@
     
     <div class="bibliography-container" style="margin-top: 140px; max-width: 950px; margin-left: auto; margin-right: auto;">
         <div class="tabs" style="margin-top: -40px;">
-            <button class="tab-button active" onclick="openTab('structural-conceptual')">Structural & Conceptual Breakdown</button>
+            <button class="tab-button active" onclick="openTab('structural-conceptual')">Ontological Analysis</button>
             <button class="tab-button" onclick="openTab('historical-context')">Historical Context & Intent</button>
             <button class="tab-button" onclick="openTab('visual-language')">Visual Language & Style</button>
         </div>
         
         <div id="structural-conceptual" class="tab-content active">
-            <div class="article-card">
-                <h3>Economic Complexity Framework</h3>
-                <p class="author">Author: César Hidalgo & Ricardo Hausmann</p>
-                <p class="year">Year: 2009-present</p>
-                <p class="format">Format: Theoretical Framework</p>
-                <p class="audience">Audience: Development economists, complexity scientists, and policy researchers</p>
-                <p class="description">The OEC is built upon the Economic Complexity framework, which conceptualizes economic development as a process of accumulating productive capabilities. The framework breaks down economic complexity into two core components: the Economic Complexity Index (ECI) for countries and the Product Complexity Index (PCI) for products. This structural approach treats economies as networks of capabilities rather than simple aggregates, revealing the underlying knowledge and skill requirements that enable different types of production.</p>
-                <a href="https://oec.world/en/rankings/country/eci" class="external-link" target="_blank">Explore ECI Framework →</a>
+            <div id="d3-canvas" style="width: 100%; height: 600px; border-radius: 15px; margin-top: 20px; background: #f8f9fa; border: 1px solid #e0e0e0; position: relative; overflow: hidden;">
+                <div class="zoom-hint">🔍 Scroll to zoom • 🖱️ Drag to pan</div>
             </div>
-            
-            <div class="article-card">
-                <h3>Product Space Network Structure</h3>
-                <p class="author">Author: Network Science Application</p>
-                <p class="year">Year: 2011-present</p>
-                <p class="format">Format: Network Analysis</p>
-                <p class="audience">Audience: Network scientists, data visualizers, and economic researchers</p>
-                <p class="description">The product space represents a structural breakdown of global production as a network where products are nodes and edges represent similarity in required capabilities. This conceptual framework reveals the modular structure of global production, showing clusters of related products and the "distances" between different economic activities. The network structure helps explain why economic diversification follows predictable paths and why some countries struggle to develop certain industries despite apparent advantages.</p>
-                <a href="https://oec.world/en/visualize/network/hs92/export/show/all/2021/" class="external-link" target="_blank">Explore Product Network →</a>
-            </div>
-            
-            <div class="article-card">
-                <h3>Capability-Based Development Theory</h3>
-                <p class="author">Author: Economic Complexity Research</p>
-                <p class="year">Year: Ongoing Research</p>
-                <p class="format">Format: Theoretical Model</p>
-                <p class="audience">Audience: Development theorists, policy researchers, and economic strategists</p>
-                <p class="description">The OEC operationalizes a capability-based theory of economic development, breaking down the concept of "development" into measurable components of productive knowledge. This structural approach treats countries as collections of capabilities rather than simple factor endowments, explaining why similar countries can have vastly different development trajectories. The framework provides a systematic way to understand the knowledge requirements for different economic activities and the path-dependent nature of capability accumulation.</p>
-                <a href="https://oec.world/en/rankings/country/fitness" class="external-link" target="_blank">View Capability Metrics →</a>
-            </div>
+
         </div>
         
         <div id="historical-context" class="tab-content">
@@ -122,6 +97,7 @@
 
     </div>
     
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

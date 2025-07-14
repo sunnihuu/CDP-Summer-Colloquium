@@ -21,8 +21,25 @@ body {
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 300;
     margin: 30px;
-    background: #FFF8E1;
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFE4B5 50%, #FFDAB9 100%);
     color: var(--primary-dark);
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(26, 117, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 10%, rgba(255, 153, 51, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(179, 102, 255, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -263,10 +280,12 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     padding: 80px 40px 60px;
     color: var(--primary-dark);
-    background: var(--off-white);
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(176, 176, 176, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     margin-bottom: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .bibliography-container h1 {
@@ -501,7 +520,7 @@ body[data-page="about-precedent-study"] .hamburger-menu {
     padding: 10px 20px;
     background: var(--off-white);
     color: var(--primary-dark);
-    border: 1px solid var(--neutral-gray);
+    border: none;
     border-radius: 20px;
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 500;
@@ -564,4 +583,178 @@ body[data-page="layers-of-analysis"] .nav-btn[onclick*="layers-of-analysis.html"
     background-color: #FF8C00;
     color: white;
     box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}
+
+/* D3.js Canvas Enhancements */
+#d3-canvas {
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+#d3-canvas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(0, 119, 182, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 85% 85%, rgba(255, 140, 0, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(179, 102, 255, 0.02) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+#d3-canvas:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+#d3-canvas svg {
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced node styling */
+#d3-canvas .nodes rect {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+#d3-canvas .nodes rect:hover {
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+    transform: scale(1.02);
+}
+
+/* Enhanced link styling */
+#d3-canvas .links path {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+}
+
+#d3-canvas .links path:hover {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+/* Enhanced legend styling */
+#d3-canvas .legend rect {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.15));
+}
+
+#d3-canvas .legend:hover rect {
+    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.2));
+    transform: translateY(-1px);
+}
+
+/* Enhanced text styling */
+#d3-canvas .labels text {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    user-select: none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* Tooltip styling */
+.tooltip {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Zoom controls hint */
+.zoom-hint {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 249, 250, 0.98) 100%);
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #4a4a4a;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#d3-canvas:hover .zoom-hint {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+/* Enhanced tab styling for better visual hierarchy */
+.tab-button {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    background: linear-gradient(135deg, #ff9933 0%, #ff8c00 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
+}
+
+.tab-button.active {
+    background: linear-gradient(135deg, #ff9933 0%, #ff8c00 100%);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Popup animations */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Node popup styling */
+.node-popup {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.popup-category {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.popup-title {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.popup-description {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.popup-close {
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 } 
