@@ -7,21 +7,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="data-collection">
-    <div class="corner-text left">2025 Summer GSAPP CDP</div>
-    <div class="corner-text right">Methos As Practices</div>
-    
-    <div class="hamburger-menu" onclick="toggleMenu()">
-        <div class="circle-icon"></div>
-    </div>
-    
-    <div class="circle-menu" id="circleMenu">
-        <div class="circle-content">
-            <span onclick="window.location.href='about-precedent-study.html'">About</span>
-            <span onclick="window.location.href='data-collection.html'">Data Collection</span>
-            <span>Layers of Analysis</span>
-            <span onclick="window.location.href='final-diagram.html'">Final Diagram</span>
-        </div>
-    </div>
+    <a href="index.html" class="headline-link" style="text-decoration:none;"><h1 class="corner-text left headline"><span class="headline-bold">Precendent Study:</span><br><span class="headline-normal">The Observatory of Economic Complexity (OEC)</span></h1></a>
+    <nav class="top-nav">
+        <button class="nav-btn" onclick="window.location.href='about-precedent-study.html'">About</button>
+        <button class="nav-btn" onclick="window.location.href='data-collection.html'">Data Collection</button>
+        <button class="nav-btn" onclick="window.location.href='#'">Layers of Analysis</button>
+        <button class="nav-btn" onclick="window.location.href='final-diagram.html'">Final Diagram</button>
+    </nav>
     
     <div class="page-content">
         <h1>Data Collection</h1>
@@ -294,8 +286,6 @@
             </div>
         </div>
     </div>
-    
-    <div class="back-button-center" onclick="window.location.href='index.html'">Back to Home</div>
     
     <button class="scroll-to-top" onclick="scrollToTop()">Back to Top</button>
     
