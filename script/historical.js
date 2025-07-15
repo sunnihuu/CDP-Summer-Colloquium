@@ -1,5 +1,5 @@
 // Layered Timeline for Historical Context & Intent
-if (document.getElementById('historical-canvas')) {
+if (document.getElementById('d3-canvas-historical')) {
     // Timeline data for four tracks
     const tracks = [
         {
@@ -46,13 +46,13 @@ if (document.getElementById('historical-canvas')) {
         }
     ];
     const years = [2008, 2009, 2010, 2011, 2013, 2015, 2017, 2018, 2019, 2020, 2022, 2024];
-    const margin = { top: 80, right: 40, bottom: 50, left: 170 };
-    const width = document.getElementById('historical-canvas').clientWidth;
-    const height = 420;
-    const trackHeight = 70;
+    const margin = { top: 80, right: 40, bottom: 90, left: 60 };
+    const trackHeight = 62;
+    const height = margin.top + tracks.length * trackHeight + margin.bottom;
+    const width = document.getElementById('d3-canvas-historical').clientWidth;
 
-    d3.select('#historical-canvas').selectAll('*').remove();
-    const svg = d3.select('#historical-canvas')
+    d3.select('#d3-canvas-historical').selectAll('*').remove();
+    const svg = d3.select('#d3-canvas-historical')
         .append('svg')
         .attr('width', width)
         .attr('height', height);
@@ -81,16 +81,6 @@ if (document.getElementById('historical-canvas')) {
             .attr('stroke', track.color)
             .attr('stroke-width', 3)
             .attr('opacity', 0.18);
-        // Track label
-        svg.append('text')
-            .attr('x', margin.left - 18)
-            .attr('y', y + 8)
-            .attr('text-anchor', 'end')
-            .attr('font-size', 19)
-            .attr('font-weight', 800)
-            .attr('fill', track.color)
-            .attr('text-shadow', '1px 1px 6px #fff')
-            .text(track.name);
         // Events
         svg.selectAll(`.event-${i}`)
             .data(track.events)
@@ -109,6 +99,16 @@ if (document.getElementById('historical-canvas')) {
                     .style('left', (event.pageX + 18) + 'px')
                     .style('top', (event.pageY - 18) + 'px');
                 d3.select(this).attr('stroke', '#333').attr('stroke-width', 4);
+                // Show annotation label near the dot
+                svg.append('text')
+                    .attr('class', 'event-annotation-temp')
+                    .attr('x', x(d.year))
+                    .attr('y', y + 34)
+                    .attr('text-anchor', 'middle')
+                    .attr('font-size', 13)
+                    .attr('fill', '#222')
+                    .attr('font-weight', 500)
+                    .text(d.label);
             })
             .on('mousemove', function(event) {
                 tooltip.style('left', (event.pageX + 18) + 'px')
@@ -117,28 +117,64 @@ if (document.getElementById('historical-canvas')) {
             .on('mouseout', function() {
                 tooltip.style('opacity', 0);
                 d3.select(this).attr('stroke', '#fff').attr('stroke-width', 3);
+                // Remove annotation label
+                svg.selectAll('.event-annotation-temp').remove();
             });
-        svg.selectAll(`.event-label-${i}`)
-            .data(track.events)
-            .enter()
-            .append('text')
-            .attr('x', d => x(d.year))
-            .attr('y', y + 34)
-            .attr('text-anchor', 'middle')
-            .attr('font-size', 13)
-            .attr('fill', '#222')
-            .attr('font-weight', 500)
-            .text(d => d.label);
+        // Remove always-visible event labels
+        // svg.selectAll(`.event-label-${i}`)
+        //     .data(track.events)
+        //     .enter()
+        //     .append('text')
+        //     .attr('x', d => x(d.year))
+        //     .attr('y', y + 34)
+        //     .attr('text-anchor', 'middle')
+        //     .attr('font-size', 13)
+        //     .attr('fill', '#222')
+        //     .attr('font-weight', 500)
+        //     .text(d => d.label);
     });
 
     // Optional: Speculative Future
     svg.append('text')
         .attr('x', x(2025) || (width - margin.right))
-        .attr('y', margin.top + tracks.length * trackHeight)
+        .attr('y', margin.top + tracks.length * trackHeight + 10)
         .attr('font-size', 14)
         .attr('fill', '#888')
         .attr('font-style', 'italic')
         .text('2025 → ? Future: Will economic complexity gain traction in policy? How will visualization evolve?');
+
+    // Add legend at bottom center
+    const legendY = height - 38;
+    const legend = svg.append('g')
+        .attr('class', 'timeline-legend');
+    // Calculate dynamic legend spacing
+    const legendWidths = tracks.map(track => {
+        // Estimate width: dot (22px) + label (track name, 9px per char + 10px padding)
+        return 22 + track.name.length * 9 + 10;
+    });
+    const totalLegendWidth = legendWidths.reduce((a, b) => a + b, 0) + (tracks.length - 1) * 32;
+    let legendStartX = width / 2 - totalLegendWidth / 2;
+    let xPos = legendStartX;
+    tracks.forEach((track, i) => {
+        // Color dot
+        legend.append('circle')
+            .attr('cx', xPos + 11)
+            .attr('cy', legendY)
+            .attr('r', 11)
+            .attr('fill', track.color)
+            .attr('stroke', '#fff')
+            .attr('stroke-width', 2.5);
+        // Label
+        legend.append('text')
+            .attr('x', xPos + 28)
+            .attr('y', legendY + 5)
+            .attr('font-size', 16)
+            .attr('font-weight', 600)
+            .attr('fill', track.color)
+            .text(track.name)
+            .attr('alignment-baseline', 'middle');
+        xPos += legendWidths[i] + 32;
+    });
 
     // Tooltip
     const tooltip = d3.select('body').append('div')
