@@ -696,20 +696,20 @@ function renderSankeyDiagram() {
 
     // --- Sankey Data ---
     const nodes = [
-      { name: "Economic Complexity Theory" },
-      { name: "Complex Systems Thinking" },
-      { name: "D3.js" },
-      { name: "Open Source Visualization" },
-      { name: "Open Data Movement" },
-      { name: "Post-2008 Globalization Rethink" },
-      { name: "Harvard CID" },
-      { name: "Ricardo Hausmann" },
-      { name: "César Hidalgo" },
-      { name: "OEC Platform" },
-      { name: "Tree Maps" },
-      { name: "Network Diagrams" },
-      { name: "ECI" },
-      { name: "PCI" }
+      { name: "Economic Complexity Theory", domain: "Academic" },
+      { name: "Complex Systems Thinking", domain: "Academic" },
+      { name: "D3.js", domain: "Technology" },
+      { name: "Open Source Visualization", domain: "Technology" },
+      { name: "Open Data Movement", domain: "Policy" },
+      { name: "Post-2008 Globalization Rethink", domain: "Policy" },
+      { name: "Harvard CID", domain: "Institution" },
+      { name: "Ricardo Hausmann", domain: "Institution" },
+      { name: "César Hidalgo", domain: "Institution" },
+      { name: "OEC Platform", domain: "System" },
+      { name: "Tree Maps", domain: "Output" },
+      { name: "Network Diagrams", domain: "Output" },
+      { name: "ECI", domain: "Output" },
+      { name: "PCI", domain: "Output" }
     ];
     const links = [
       { source: 0, target: 9, value: 2 },
@@ -727,8 +727,14 @@ function renderSankeyDiagram() {
       { source: 9, target: 13, value: 1 }
     ];
 
+    // --- Color by domain (ordinal scale) ---
+    const domainColor = d3.scaleOrdinal()
+      .domain(["Academic", "Technology", "Policy", "Institution", "System", "Output"])
+      .range(["#4CAF50", "#2196F3", "#FF9800", "#9C27B0", "#F44336", "#9E9E9E"]);
+
     // --- Sankey Setup ---
     const sankey = d3.sankey()
+      .nodeId(d => d.name)
       .nodeWidth(20)
       .nodePadding(10)
       .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]]);
@@ -753,7 +759,7 @@ function renderSankeyDiagram() {
       .data(sankeyLinks)
       .join('path')
       .attr('d', d3.sankeyLinkHorizontal())
-      .attr('stroke', '#aaa')
+      .attr('stroke', d => domainColor(d.source.domain))
       .attr('stroke-width', d => Math.max(1, d.width))
       .attr('opacity', 0.5);
 
@@ -768,12 +774,12 @@ function renderSankeyDiagram() {
       .attr('y', d => d.y0)
       .attr('height', d => d.y1 - d.y0)
       .attr('width', d => d.x1 - d.x0)
-      .attr('fill', '#888')
+      .attr('fill', d => domainColor(d.domain))
       .attr('stroke', '#222')
       .on('mouseover', function(event, d) {
         d3.select(this).attr('stroke', '#000').attr('stroke-width', 2);
         tooltip.style('display', 'block')
-          .html(`<strong>${d.name}</strong>`);
+          .html(`<strong>${d.name}</strong><br>Domain: ${d.domain}`);
       })
       .on('mousemove', function(event) {
         tooltip.style('left', (event.pageX + 15) + 'px')
