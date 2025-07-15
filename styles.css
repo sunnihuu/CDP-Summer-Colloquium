@@ -814,3 +814,27 @@ body[data-page="layers-of-analysis"] .nav-btn[onclick*="layers-of-analysis.html"
     box-shadow: 0 16px 48px rgba(44, 62, 80, 0.16), 0 3px 12px rgba(44, 62, 80, 0.10);
     border-color: #b0b0b0;
 } 
+
+#d3-canvas-style text {
+  fill: #000 !important;
+} 
+
+.d3-canvas-svg {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: block;
+  margin: 0 auto;
+  border: none;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.d3-canvas-svg:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  transform: translateY(-3px);
+} 
+
+.d3-canvas-svg text {
+  fill: black !important;
+  text-shadow: none !important;
+} 
