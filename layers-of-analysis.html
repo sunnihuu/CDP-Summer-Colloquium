@@ -15,46 +15,20 @@
             <button class="nav-btn" onclick="window.location.href='final-diagram.html'">Final Diagram</button>
         </nav>
     </div>
-    
-    <div class="bibliography-container" style="margin-top: 140px; max-width: 950px; margin-left: auto; margin-right: auto;">
+    <div class="bibliography-container" style="margin-top: 140px; max-width: 950px; margin-left: auto; margin-right: auto; padding-top: 14px;">
         <h2>Ontological Analysis</h2>
-        <div id="d3-canvas" style="width: 100%; height: 600px; border-radius: 15px; margin-top: 20px; background: #f8f9fa; border: 1px solid #e0e0e0; position: relative; overflow: hidden;"></div>
+        <div id="d3-canvas" style="width:100%;height:480px;margin:32px auto 40px auto;"></div>
         
         <h2>Historical Context & Intent</h2>
-        <div id="d3-canvas-historical" style="width: 100%; height: 600px; border-radius: 15px; margin-top: 20px; background: #f8f9fa; border: 1px solid #e0e0e0; position: relative; overflow: hidden;"></div>
+        <div id="historical-canvas" style="width:100%;height:480px;margin:32px auto 40px auto;"></div>
         
         <h2>Visual Language & Style</h2>
-            <div class="article-card">
-                <h3>Interactive Network Visualizations</h3>
-                <p class="author">Author: D3plus & D3.js Implementation</p>
-                <p class="year">Year: 2011-present</p>
-                <p class="format">Format: Interactive Data Visualization</p>
-                <p class="audience">Audience: Data visualizers, UX designers, and information architects</p>
-                <p class="description">The OEC employs sophisticated network visualizations to represent the product space and trade relationships. The visual language uses nodes and edges to create intuitive representations of complex economic relationships, with color coding, size variations, and interactive elements that allow users to explore data at multiple scales. The network style makes abstract economic concepts tangible and reveals patterns that would be invisible in tabular data.</p>
-                <a href="https://oec.world/en/visualize/network/hs92/export/show/all/2021/" class="external-link" target="_blank">Explore Network Visualizations →</a>
-            </div>
-            <div class="article-card">
-                <h3>Treemap & Hierarchical Displays</h3>
-                <p class="author">Author: OEC Data Visualization Team</p>
-                <p class="year">Year: 2011-present</p>
-                <p class="format">Format: Hierarchical Visualization</p>
-                <p class="audience">Audience: Data analysts, business intelligence professionals, and researchers</p>
-                <p class="description">The platform uses treemap visualizations to display hierarchical trade data, where rectangles represent products or countries, with size indicating value and color indicating complexity or growth. This visual style efficiently uses screen space while maintaining readability and enabling quick pattern recognition. The hierarchical approach allows users to drill down from broad categories to specific products, creating an intuitive navigation experience through complex datasets.</p>
-                <a href="https://oec.world/en/visualize/tree_map/hs92/export/show/all/2021/" class="external-link" target="_blank">View Treemap Visualizations →</a>
-            </div>
-            <div class="article-card">
-                <h3>Color Coding & Visual Hierarchy</h3>
-                <p class="author">Author: OEC Design System</p>
-                <p class="year">Year: 2015-present</p>
-                <p class="format">Format: Visual Design System</p>
-                <p class="audience">Audience: Visual designers, information designers, and UX researchers</p>
-                <p class="description">The OEC employs a sophisticated color coding system that conveys multiple dimensions of information simultaneously. Colors represent complexity levels, growth rates, and regional groupings, while visual hierarchy guides users through different levels of detail. The design system balances analytical precision with aesthetic appeal, using consistent visual language across all platform features to create a cohesive user experience that supports both expert analysis and public education.</p>
-                <a href="https://oec.world/en/rankings/country/eci" class="external-link" target="_blank">Experience Visual Design →</a>
-            </div>
     </div>
     
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script/ontological.js"></script>
+    <script src="script/historical.js"></script>
+    <script src="script/visual-style.js"></script>
 </body>
 </html> 

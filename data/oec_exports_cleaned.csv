@@ -1,0 +1,11 @@
+source_year,source_category,target_year,target_category,value
+2011,Oil,2015,Oil,200000
+2011,Oil,2015,Chemicals,30000
+2011,Agriculture,2015,Agriculture,50000
+2015,Oil,2020,Electronics,40000
+2015,Machinery,2020,Electronics,120000
+2015,Agriculture,2020,Agriculture,60000
+2015,Chemicals,2020,Chemicals,20000
+2020,Electronics,2023,Electronics,100000
+2020,Agriculture,2023,Agriculture,70000
+2020,Chemicals,2023,Chemicals,15000 
