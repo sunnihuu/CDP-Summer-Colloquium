@@ -67,6 +67,16 @@ const nodeDescriptions = { /* ... (copy the full nodeDescriptions object from sc
 
 function getRelationshipDescription(type) { /* ... (copy function from script.js) ... */ }
 
+// Define a unified color palette for all diagrams
+const unifiedPalette = [
+  '#8E7CC3', // Global Context
+  '#3A86FF', // OEC Development
+  '#23C16B', // Academic & Theory
+  '#FFD600', // Visualization & Interface
+  '#FF8C00', // User Interfaces
+  '#00BFC4'  // Metadata & Infra
+];
+
 function initD3JS() {
   const width = document.getElementById('d3-canvas').clientWidth;
   const height = document.getElementById('d3-canvas').clientHeight;
@@ -97,7 +107,7 @@ function initD3JS() {
     .data(nodes)
     .enter().append('circle')
     .attr('r', 28)
-    .attr('fill', d => d3.schemeCategory10[d.group])
+    .attr('fill', d => unifiedPalette[d.group])
     .call(d3.drag()
       .on('start', dragstarted)
       .on('drag', dragged)
