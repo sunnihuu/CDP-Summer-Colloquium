@@ -67,7 +67,7 @@ const nodeDescriptions = { /* ... (copy the full nodeDescriptions object from sc
 
 function getRelationshipDescription(type) { /* ... (copy function from script.js) ... */ }
 
-// Define a unified color palette for all diagrams
+// Define the color palette for Ontological Analysis
 const unifiedPalette = [
   '#8E7CC3', // Global Context
   '#3A86FF', // OEC Development
@@ -76,6 +76,17 @@ const unifiedPalette = [
   '#FF8C00', // User Interfaces
   '#00BFC4'  // Metadata & Infra
 ];
+
+// Color mapping for groups (copied from visual-style.js)
+const groupColors = {
+  0: '#222', // black/gray
+  1: d3.schemeCategory10[0], // blue
+  2: d3.schemeCategory10[1], // orange
+  3: d3.schemeCategory10[2], // green
+  4: d3.schemeCategory10[3], // purple
+  5: d3.schemeCategory10[4], // red
+  6: d3.schemeCategory10[7]  // brown
+};
 
 function initD3JS() {
   const width = document.getElementById('d3-canvas').clientWidth;
@@ -87,42 +98,73 @@ function initD3JS() {
     .attr('width', width)
     .attr('height', height);
 
+  // Add zoom and pan
+  const container = svg.append('g');
+  zoom = d3.zoom()
+    .scaleExtent([0.2, 3])
+    .on('zoom', (event) => {
+      container.attr('transform', event.transform);
+    });
+  svg.call(zoom);
+
   simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink(links).id(d => d.id).distance(90).strength(1))
     .force('charge', d3.forceManyBody().strength(-400))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collide', d3.forceCollide(40));
 
-  const link = svg.append('g')
+  const link = container.append('g')
     .attr('stroke', '#bbb')
     .attr('stroke-width', 2)
     .selectAll('line')
     .data(links)
     .enter().append('line');
 
-  const node = svg.append('g')
+  const node = container.append('g')
     .attr('stroke', '#fff')
     .attr('stroke-width', 2)
-    .selectAll('circle')
+    .selectAll('g')
     .data(nodes)
-    .enter().append('circle')
-    .attr('r', 28)
-    .attr('fill', d => unifiedPalette[d.group])
+    .enter().append('g')
     .call(d3.drag()
       .on('start', dragstarted)
       .on('drag', dragged)
       .on('end', dragended));
 
-  const label = svg.append('g')
-    .selectAll('text')
-    .data(nodes)
-    .enter().append('text')
-    .attr('text-anchor', 'middle')
-    .attr('dy', 4)
-    .attr('font-size', 13)
-    .attr('font-family', 'Inter, Arial, sans-serif')
-    .attr('pointer-events', 'none')
-    .text(d => d.label);
+  node.each(function(d) {
+    // Create a text element first to measure its width
+    const text = d3.select(this)
+      .append('text')
+      .text(d.label)
+      .attr('x', 0)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', 13)
+      .attr('font-family', 'Inter, Arial, sans-serif')
+      .style('fill', 'var(--primary-dark)')
+      .style('paint-order', 'stroke')
+      .style('stroke', 'none');
+    // Use the DOM to measure the text width and height
+    const bbox = text.node().getBBox();
+    const paddingX = 14;
+    const paddingY = 8;
+    // Draw a rounded rectangle behind the text
+    d3.select(this)
+      .insert('rect', 'text')
+      .attr('x', -bbox.width/2 - paddingX)
+      .attr('y', -bbox.height/2 - paddingY/2)
+      .attr('width', bbox.width + 2*paddingX)
+      .attr('height', bbox.height + paddingY)
+      .attr('rx', 12)
+      .attr('ry', 12)
+      .attr('fill', unifiedPalette[d.group])
+      .attr('stroke', 'var(--neutral-gray)')
+      .attr('stroke-width', 1.5)
+      .style('filter', 'drop-shadow(0 2px 8px rgba(0,0,0,0.13))');
+    // Vertically center the text in the box
+    text
+      .attr('y', bbox.height/2 - 2)
+      .style('fill', 'var(--primary-dark)');
+  });
 
   simulation.on('tick', () => {
     link
@@ -131,11 +173,7 @@ function initD3JS() {
       .attr('x2', d => d.target.x)
       .attr('y2', d => d.target.y);
     node
-      .attr('cx', d => d.x)
-      .attr('cy', d => d.y);
-    label
-      .attr('x', d => d.x)
-      .attr('y', d => d.y);
+      .attr('transform', d => `translate(${d.x},${d.y})`);
   });
 
   function dragstarted(event, d) {

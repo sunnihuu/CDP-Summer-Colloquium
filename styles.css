@@ -793,8 +793,9 @@ body[data-page="layers-of-analysis"] .nav-btn[onclick*="layers-of-analysis.html"
 }
 
 #d3-canvas,
-#d3-canvas-historical {
-    margin-bottom: 40px;
+#d3-canvas-historical,
+#d3-canvas-style {
+    background: #fff !important;
 } 
 
 .refined-canvas {

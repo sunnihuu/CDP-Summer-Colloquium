@@ -63,16 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
       ]
     };
 
-    // Color mapping for groups
-    const groupColors = {
-      0: '#222', // black/gray
-      1: d3.schemeCategory10[0], // blue
-      2: d3.schemeCategory10[1], // orange
-      3: d3.schemeCategory10[2], // green
-      4: d3.schemeCategory10[3], // purple
-      5: d3.schemeCategory10[4], // red
-      6: d3.schemeCategory10[7]  // brown
-    };
+    // Replace groupColors with unifiedPalette from ontological.js
+    const unifiedPalette = [
+      '#8E7CC3', // Global Context
+      '#3A86FF', // OEC Development
+      '#23C16B', // Academic & Theory
+      '#FFD600', // Visualization & Interface
+      '#FF8C00', // User Interfaces
+      '#00BFC4', // Metadata & Infra
+      '#FF5CA7'  // New: Additional group (Pink/Magenta)
+    ];
 
     // Create SVG styled as a canvas
     const svg = d3.select(container)
@@ -80,7 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
       .attr('width', width)
       .attr('height', height)
       .attr('class', 'd3-canvas-svg')
-      .attr('fill', 'none'); 
+      .attr('fill', 'none');
+
+    // Add zoom and pan
+    const zoomContainer = svg.append('g');
+    const zoom = d3.zoom()
+      .scaleExtent([0.2, 3])
+      .on('zoom', (event) => {
+        zoomContainer.attr('transform', event.transform);
+      });
+    svg.call(zoom);
+
     // Simulation
     const simulation = d3.forceSimulation(data.nodes)
       .force("link", d3.forceLink(data.links).id(d => d.id).distance(100))
@@ -88,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .force("center", d3.forceCenter(width / 2, height / 2));
 
     // Draw links
-    const link = svg.append("g")
+    const link = zoomContainer.append("g")
       .attr("stroke", "#aaa")
       .attr("stroke-width", 1.5)
       .selectAll("line")
@@ -96,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .enter().append("line");
 
     // Draw nodes as boxes (cards) instead of circles
-    const node = svg.append("g")
+    const node = zoomContainer.append("g")
       .attr("stroke", "#fff")
       .attr("stroke-width", 1.5)
       .selectAll("g")
@@ -129,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .attr("height", bbox.height + paddingY)
         .attr("rx", 12)
         .attr("ry", 12)
-        .attr("fill", "url(#node-gradient)")
+        .attr("fill", unifiedPalette[d.group])
         .attr("stroke", "var(--neutral-gray)")
         .attr("stroke-width", 1.5)
         .style("filter", "drop-shadow(0 2px 8px rgba(0,0,0,0.13))");
@@ -166,22 +176,5 @@ document.addEventListener('DOMContentLoaded', function() {
           d.fy = null;
         });
     }
-
-    // Add SVG defs for gradient background (match #d3-canvas)
-    svg.append("defs").append("linearGradient")
-      .attr("id", "node-gradient")
-      .attr("x1", "0%")
-      .attr("y1", "0%")
-      .attr("x2", "100%")
-      .attr("y2", "100%")
-      .selectAll("stop")
-      .data([
-        {offset: "0%", color: "#ffffff"},
-        {offset: "50%", color: "#f8f9fa"},
-        {offset: "100%", color: "#f1f3f4"}
-      ])
-      .enter().append("stop")
-      .attr("offset", d => d.offset)
-      .attr("stop-color", d => d.color);
   }
 }); 
